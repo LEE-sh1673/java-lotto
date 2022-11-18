@@ -2,10 +2,12 @@ package lotto.domain;
 
 import static lotto.domain.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,5 +28,14 @@ public class WinningLottoTest {
             () -> new WinningLotto(lotto, new LottoNumber(number)))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(DUPLICATED_BONUS_NUMBER.getMessage());
+    }
+
+    @DisplayName("당첨 번호와 로또 번호를 비교하여 당첨 내역을 구할 수 있다. - MISS")
+    @Test
+    void getRankMissCompareLottoWithWinningLotto() {
+        Lotto otherLotto = new Lotto(List.of(11, 12, 13, 14, 15, 16));
+        WinningLotto winningLotto = new WinningLotto(lotto, new LottoNumber(45));
+        Rank rank = winningLotto.compare(otherLotto);
+        assertThat(rank).isEqualTo(Rank.MISS);
     }
 }
