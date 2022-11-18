@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.domain.ErrorMessage.LESS_THEN_MINIMUM_AMOUNT;
+import static lotto.domain.ErrorMessage.NOT_DIVISIBLE_WITH_THOUSAND;
+
 public class Money {
 
     private static final int MIN_AMOUNT = 1_000;
@@ -19,7 +22,7 @@ public class Money {
     private void validateIsLessThanMinimum(final int amount) {
         if (isLessThanMinimum(amount)) {
             throw new IllegalArgumentException(
-                "[ERROR] 금액은 최소 1,000원입니다."
+                LESS_THEN_MINIMUM_AMOUNT.getMessage()
             );
         }
     }
@@ -31,7 +34,7 @@ public class Money {
     private void validateUnit(final int amount) {
         if (!isDivisibleWithThousand(amount)) {
             throw new IllegalArgumentException(
-                "[ERROR] 금액은 1,000원으로 나누어 떨어지는 수여야 합니다."
+                NOT_DIVISIBLE_WITH_THOUSAND.getMessage()
             );
         }
     }
