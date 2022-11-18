@@ -21,16 +21,14 @@ public class LottoResultTest {
     static LottoResult lottoResult;
 
     static List<Lotto> lottos = List.of(
-        new Lotto(List.of(11, 12, 13, 14, 15, 16)), // MISS
-        new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-        new Lotto(List.of(1, 2, 3, 4, 5, 6)), // ~ FIRST
-        new Lotto(List.of(1, 2, 3, 4, 5, 45)), // ~ SECOND
-        new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-        new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-        new Lotto(List.of(1, 2, 3, 4, 5, 7)), // ~ THIRD
-        new Lotto(List.of(1, 2, 3, 4, 7, 8)),
-        new Lotto(List.of(1, 2, 3, 4, 7, 45)), // ~ FOURTH
-        new Lotto(List.of(1, 2, 3, 7, 8, 45)) // ~ FIFTH
+        new Lotto(List.of(8, 21, 23, 41, 42, 43)),
+        new Lotto(List.of(3, 5, 11, 16, 32, 38)),
+        new Lotto(List.of(7, 11, 16, 35, 36, 44)),
+        new Lotto(List.of(1, 8, 11, 31, 41, 42)),
+        new Lotto(List.of(13, 14, 16, 38, 42, 45)),
+        new Lotto(List.of(7, 11, 30, 40, 42, 43)),
+        new Lotto(List.of(2, 13, 22, 32, 38, 45)),
+        new Lotto(List.of(1, 3, 5, 14, 22, 45))
     );
 
     @BeforeAll
@@ -38,7 +36,7 @@ public class LottoResultTest {
         lottoRanks = new EnumMap<>(Rank.class);
         winningLotto = new WinningLotto(
             new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-            new LottoNumber(45)
+            new LottoNumber(7)
         );
 
         for (Lotto lotto : lottos) {
@@ -57,20 +55,27 @@ public class LottoResultTest {
 
     private static Stream<Arguments> provideRankWithCount() {
         return Stream.of(
-            Arguments.of(Rank.FIRST, 2),
-            Arguments.of(Rank.SECOND, 1),
-            Arguments.of(Rank.THIRD, 3),
-            Arguments.of(Rank.FOURTH, 2),
+            Arguments.of(Rank.FIRST, 0),
+            Arguments.of(Rank.SECOND, 0),
+            Arguments.of(Rank.THIRD, 0),
+            Arguments.of(Rank.FOURTH, 0),
             Arguments.of(Rank.FIFTH, 1),
-            Arguments.of(Rank.MISS, 1)
+            Arguments.of(Rank.MISS, 7)
         );
     }
 
     @DisplayName("총 상금을 구할 수 있다.")
     @Test
     void calculateRateOfReturn() {
-        long totalPrize = lottoResult.calculateTotalPrize();
-        assertThat(totalPrize).isEqualTo(4_034_605_000L);
+        assertThat(lottoResult.calculateTotalPrize())
+            .isEqualTo(5_000L);
+    }
+
+    @DisplayName("총 수익률을 구할 수 있다.")
+    @Test
+    void calculateProfitRate() {
+        assertThat(lottoResult.calculateProfitRate())
+            .isEqualTo(62.5);
     }
 
 }
