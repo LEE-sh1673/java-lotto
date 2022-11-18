@@ -23,8 +23,6 @@ public class WinningLotto {
     }
 
     public Rank compare(final Lotto lotto) {
-        int countOfMatch = numbers.countMatchedNumber(lotto);
-        boolean bonusContains = lotto.contains(bonusNumber);
-        return Rank.of(countOfMatch, bonusContains);
+        return Rank.of(numbers.countMatchedNumber(lotto), lotto.contains(bonusNumber));
     }
 }

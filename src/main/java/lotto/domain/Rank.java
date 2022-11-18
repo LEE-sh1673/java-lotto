@@ -3,32 +3,34 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, false, 1_500_000),
-    MISS(0, false, 0);
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    MISS(0, 0);
 
     private final int countOfMatch;
 
-    private final boolean bonusContains;
-
     private final int winningPrice;
 
-    Rank(final int countOfMatch, final boolean bonusContains, final int winningPrice) {
+    Rank(final int countOfMatch, final int winningPrice) {
         this.countOfMatch = countOfMatch;
-        this.bonusContains = bonusContains;
         this.winningPrice = winningPrice;
     }
 
-    public static Rank of(final int countOfMatch, final boolean bonusContains) {
-        return Arrays.stream(values())
-            .filter(rank -> rank.equalsWith(countOfMatch, bonusContains))
-            .findFirst()
-            .orElse(Rank.MISS);
+    public static Rank of(final int countOfMatch, final boolean isBonusContains) {
+        Rank rank = getRankByMatchCount(countOfMatch);
+
+        if (rank == SECOND && !isBonusContains) {
+            return Rank.THIRD;
+        }
+        return rank;
     }
 
-    private boolean equalsWith(final int countOfMatch, final boolean bonusContains) {
-        return this.countOfMatch == countOfMatch
-            && this.bonusContains == bonusContains;
+    private static Rank getRankByMatchCount(final int countOfMatch) {
+        return Arrays.stream(values())
+            .filter(rank -> rank.countOfMatch == countOfMatch)
+            .findFirst()
+            .orElse(MISS);
     }
 }
