@@ -46,4 +46,8 @@ public class Lotto {
             );
         }
     }
+
+    public boolean contains(final LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
 }
