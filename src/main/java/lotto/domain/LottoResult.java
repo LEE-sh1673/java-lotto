@@ -4,6 +4,7 @@ import static lotto.domain.LottoAttributes.LOTTO_PRICE;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.Set;
 
 public class LottoResult {
 
@@ -36,5 +37,9 @@ public class LottoResult {
             .stream()
             .map(count -> count * LOTTO_PRICE * 1.0)
             .reduce(0.0, Double::sum);
+    }
+
+    public Set<Rank> keySet() {
+        return lottoRanks.keySet();
     }
 }

@@ -38,4 +38,8 @@ public enum Rank {
     public int getWinningPrice() {
         return winningPrice;
     }
+
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
 }
