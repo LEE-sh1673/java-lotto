@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Rank {
+
+    FIRST(6, 2_000_000_000),
     MISS(0, 0);
 
     private final int countOfMatch;

@@ -38,4 +38,13 @@ public class WinningLottoTest {
         Rank rank = winningLotto.compare(otherLotto);
         assertThat(rank).isEqualTo(Rank.MISS);
     }
+
+    @DisplayName("당첨 번호와 로또 번호를 비교하여 당첨 내역을 구할 수 있다. - FIRST")
+    @Test
+    void getRankFirstCompareLottoWithWinningLotto() {
+        Lotto otherLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(lotto, new LottoNumber(45));
+        Rank rank = winningLotto.compare(otherLotto);
+        assertThat(rank).isEqualTo(Rank.FIRST);
+    }
 }
