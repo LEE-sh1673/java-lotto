@@ -5,16 +5,23 @@ import static lotto.domain.ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
     private static final int MAX_LOTTO_NUMBERS_SIZE = 6;
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = mapToLottoNumbers(numbers);
+    }
+
+    private static List<LottoNumber> mapToLottoNumbers(final List<Integer> numbers) {
+        return numbers.stream()
+            .map(LottoNumber::new)
+            .collect(Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {
