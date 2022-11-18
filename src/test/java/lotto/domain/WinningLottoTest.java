@@ -49,7 +49,8 @@ public class WinningLottoTest {
             Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 45)), Rank.SECOND),
             Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), Rank.THIRD),
             Arguments.of(new Lotto(List.of(1, 2, 3, 4, 7, 8)), Rank.FOURTH),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 7, 45)), Rank.FOURTH)
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 7, 45)), Rank.FOURTH),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 7, 8, 45)), Rank.FIFTH)
         );
     }
 }
