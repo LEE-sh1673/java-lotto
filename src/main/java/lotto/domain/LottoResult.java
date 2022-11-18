@@ -1,11 +1,11 @@
 package lotto.domain;
 
+import static lotto.domain.LottoAttributes.LOTTO_PRICE;
+
 import java.util.Arrays;
 import java.util.EnumMap;
 
 public class LottoResult {
-
-    private final double LOTTO_PRICE = 1_000.0;
 
     private final EnumMap<Rank, Integer> lottoRanks;
 
@@ -34,7 +34,7 @@ public class LottoResult {
     private double calculateTotalPurchaseAmount() {
         return lottoRanks.values()
             .stream()
-            .map(count -> count * LOTTO_PRICE)
+            .map(count -> count * LOTTO_PRICE * 1.0)
             .reduce(0.0, Double::sum);
     }
 }

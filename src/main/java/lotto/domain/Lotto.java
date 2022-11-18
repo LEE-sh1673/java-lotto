@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE;
+import static lotto.domain.LottoAttributes.LOTTO_NUMBERS_SIZE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -8,8 +9,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-
-    private static final int MAX_LOTTO_NUMBERS_SIZE = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -31,7 +30,7 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != MAX_LOTTO_NUMBERS_SIZE) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(
                 INVALID_LOTTO_NUMBERS_SIZE.getMessage()
             );
@@ -55,5 +54,10 @@ public class Lotto {
 
     public boolean contains(final LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

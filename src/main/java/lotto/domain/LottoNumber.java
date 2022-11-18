@@ -46,4 +46,9 @@ public class LottoNumber {
         LottoNumber other = (LottoNumber) obj;
         return this.number == other.number;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
 }
