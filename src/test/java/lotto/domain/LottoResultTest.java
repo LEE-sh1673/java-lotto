@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -63,6 +64,13 @@ public class LottoResultTest {
             Arguments.of(Rank.FIFTH, 1),
             Arguments.of(Rank.MISS, 1)
         );
+    }
+
+    @DisplayName("총 상금을 구할 수 있다.")
+    @Test
+    void calculateRateOfReturn() {
+        long totalPrize = lottoResult.calculateTotalPrize();
+        assertThat(totalPrize).isEqualTo(4_034_605_000L);
     }
 
 }
