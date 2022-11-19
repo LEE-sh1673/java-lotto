@@ -1,13 +1,9 @@
 package lotto.service;
 
-import java.util.EnumMap;
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 
 public class LottoService {
@@ -17,8 +13,7 @@ public class LottoService {
     private LottoResult lottoResult;
 
     public Lottos publishLottos(final int purchaseAmount) {
-        Money money = new Money(purchaseAmount);
-        lottos = new Lottos(LottoMachine.publish(money));
+        lottos = LottoMachine.publish(purchaseAmount);
         return lottos;
     }
 
@@ -26,11 +21,7 @@ public class LottoService {
         final int bonusNumber) {
 
         WinningLotto winningLotto = new WinningLotto(lottoNumbers, bonusNumber);
-        EnumMap<Rank, Integer> lottoRanks = new EnumMap<>(Rank.class);
-        for (Lotto lotto : lottos) {
-            lottoRanks.merge(winningLotto.compare(lotto), 1, Integer::sum);
-        }
-        lottoResult = new LottoResult(lottoRanks);
+        lottoResult = winningLotto.compare(lottos);
         return lottoResult;
     }
 

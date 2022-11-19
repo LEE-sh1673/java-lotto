@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.domain.ErrorMessage.DUPLICATED_BONUS_NUMBER;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class WinningLotto {
@@ -24,7 +25,15 @@ public class WinningLotto {
         }
     }
 
-    public Rank compare(final Lotto lotto) {
+    public LottoResult compare(final Lottos lottos) {
+        EnumMap<Rank, Integer> lottoRanks = new EnumMap<>(Rank.class);
+        for (Lotto lotto : lottos) {
+            lottoRanks.merge(compare(lotto), 1, Integer::sum);
+        }
+        return new LottoResult(lottoRanks);
+    }
+
+    Rank compare(final Lotto lotto) {
         return Rank.of(numbers.countMatchedNumber(lotto), lotto.contains(bonusNumber));
     }
 }
