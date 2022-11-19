@@ -12,11 +12,13 @@ import java.util.stream.Stream;
 
 public class LottoMachine {
 
-    public static List<Lotto> publish(final Money money) {
+    public static Lottos publish(final int amount) {
+        Money money = new Money(amount);
         int numberOfLotto = money.getAmount() / LOTTO_PRICE;
-        return Stream.generate(() -> new Lotto(createNonDuplicateNumbers()))
+        List<Lotto> lottos = Stream.generate(() -> new Lotto(createNonDuplicateNumbers()))
             .limit(numberOfLotto)
             .collect(Collectors.toList());
+        return new Lottos(lottos);
     }
 
     private static List<Integer> createNonDuplicateNumbers() {
