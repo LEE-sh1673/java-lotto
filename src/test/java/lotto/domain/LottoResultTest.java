@@ -34,10 +34,7 @@ public class LottoResultTest {
     @BeforeAll
     static void setUp() {
         lottoRanks = new EnumMap<>(Rank.class);
-        winningLotto = new WinningLotto(
-            new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-            new LottoNumber(7)
-        );
+        winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
         for (Lotto lotto : lottos) {
             lottoRanks.merge(winningLotto.compare(lotto), 1, Integer::sum);

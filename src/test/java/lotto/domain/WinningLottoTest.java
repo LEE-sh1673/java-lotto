@@ -15,22 +15,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningLottoTest {
 
-    static Lotto lotto;
+    static List<Integer> lottoNumbers;
 
     static WinningLotto winningLotto;
 
     @BeforeAll
     static void setUp() {
-        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        winningLotto = new WinningLotto(lotto, new LottoNumber(45));
+        lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        winningLotto = new WinningLotto(lottoNumbers, 45);
     }
 
     @DisplayName("당첨 번호와 중복된 보너스 번호가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
-    void createWinningLottoNumbersContainBonus(int number) {
+    void createWinningLottoNumbersContainBonus(int bonus) {
         assertThatThrownBy(
-            () -> new WinningLotto(lotto, new LottoNumber(number)))
+            () -> new WinningLotto(lottoNumbers, bonus))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(DUPLICATED_BONUS_NUMBER.getMessage());
     }

@@ -4,7 +4,6 @@ import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
-import lotto.domain.LottoNumber;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -23,11 +22,10 @@ public class LottoService {
         return lottos;
     }
 
-    public LottoResult getLottoResult(final List<Integer> lottoNumbers, final int bonusNumber) {
-        WinningLotto winningLotto = new WinningLotto(
-            new Lotto(lottoNumbers),
-            new LottoNumber(bonusNumber)
-        );
+    public LottoResult getLottoResult(final List<Integer> lottoNumbers,
+        final int bonusNumber) {
+
+        WinningLotto winningLotto = new WinningLotto(lottoNumbers, bonusNumber);
         EnumMap<Rank, Integer> lottoRanks = new EnumMap<>(Rank.class);
         for (Lotto lotto : lottos) {
             lottoRanks.merge(winningLotto.compare(lotto), 1, Integer::sum);
