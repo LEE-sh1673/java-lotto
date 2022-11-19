@@ -1,14 +1,12 @@
 package lotto.domain;
 
 import static lotto.domain.ErrorMessage.INVALID_LOTTO_NUMBER_BOUND;
+import static lotto.domain.LottoAttributes.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoAttributes.MIN_LOTTO_NUMBER;
 
 import java.util.Objects;
 
 public class LottoNumber {
-
-    private static final int MIN_LOTTO_NUMBER = 1;
-
-    private static final int MAX_LOTTO_NUMBER = 45;
 
     private final int number;
 
