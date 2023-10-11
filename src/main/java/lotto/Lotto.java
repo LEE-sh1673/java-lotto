@@ -36,5 +36,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int difference(final Lotto other) {
+        return (int)numbers.stream()
+            .filter(other::contains)
+            .count();
+    }
+
+    public boolean contains(final LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
 }

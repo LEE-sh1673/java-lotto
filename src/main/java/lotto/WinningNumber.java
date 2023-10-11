@@ -31,7 +31,10 @@ public class WinningNumber {
         return winningNumbers.contains(bonusNumber);
     }
 
-    public LottoRank matches(final Lotto lotto) {
-        return LottoRank.FIFTH;
+    public MatchResult matches(final Lotto lotto) {
+        return MatchResult.of(
+            winningLotto.difference(lotto),
+            lotto.contains(bonusNumber)
+        );
     }
 }
