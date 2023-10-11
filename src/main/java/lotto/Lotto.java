@@ -12,7 +12,11 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers.stream()
+        this.numbers = mapNumbers(numbers);
+    }
+
+    private static List<LottoNumber> mapNumbers(final List<Integer> numbers) {
+        return numbers.stream()
             .map(LottoNumber::new)
             .collect(Collectors.toList());
     }

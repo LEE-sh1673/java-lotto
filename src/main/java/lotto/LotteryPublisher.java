@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,7 +36,10 @@ public class LotteryPublisher {
     }
 
     private static Lotto publishLotto() {
-        return new Lotto(createNonDuplicatedNumbers());
+        final List<Integer> numbers = createNonDuplicatedNumbers().stream()
+            .sorted(Comparator.comparingInt(Integer::intValue))
+            .collect(Collectors.toList());
+        return new Lotto(numbers);
     }
 
     private static List<Integer> createNonDuplicatedNumbers() {

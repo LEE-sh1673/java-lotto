@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toMap;
@@ -21,10 +20,8 @@ public enum LottoRank {
     FIFTH(THREE, 5_000),
     MISS(NONE, 0);
 
-    private static final Map<MatchResult, LottoRank> matchTypeToRank
-        = Stream.of(values()).collect(
-        toMap(LottoRank::getMatchType, Function.identity())
-    );
+    private static final Map<MatchResult, LottoRank> matchResultToRank = Stream.of(values())
+        .collect(toMap(LottoRank::getMatchType, rank -> rank));
 
     private final MatchResult matchResult;
 
@@ -36,7 +33,7 @@ public enum LottoRank {
     }
 
     public static Optional<LottoRank> fromMatchType(final MatchResult matchResult) {
-        return Optional.ofNullable(matchTypeToRank.get(matchResult));
+        return Optional.ofNullable(matchResultToRank.get(matchResult));
     }
 
     public boolean isBonusMatches() {

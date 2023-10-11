@@ -16,7 +16,7 @@ public enum MatchResult {
 
     private static final Map<Integer, MatchResult> matchesToResult = Stream.of(values())
         .filter((matchResult) -> !matchResult.isBonusMatches())
-        .collect(toMap(MatchResult::getNumberOfMatches, Function.identity()));
+        .collect(toMap(MatchResult::getNumberOfMatches, matchResult -> matchResult));
 
     private final int numberOfMatches;
 
