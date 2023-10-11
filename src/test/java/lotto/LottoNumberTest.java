@@ -1,11 +1,13 @@
 package lotto;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LottoNumberTest {
 
@@ -26,5 +28,16 @@ public class LottoNumberTest {
         assertThatThrownBy(() -> new LottoNumber(number))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("로또 번호를 서로 비교할 수 있다.")
+    void compareLottoNumbers() {
+        for (int number = 1; number <= 45; number++) {
+            assertEquals(
+                new LottoNumber(number),
+                new LottoNumber(number)
+            );
+        }
     }
 }

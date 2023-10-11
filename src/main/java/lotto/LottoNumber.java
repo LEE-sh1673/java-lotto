@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Objects;
+
 import lotto.exception.ErrorType;
 
 public class LottoNumber {
@@ -29,5 +31,27 @@ public class LottoNumber {
 
     public int getNumber() {
         return this.number;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final LottoNumber other = (LottoNumber)o;
+        return matchNumber(other);
+    }
+
+    private boolean matchNumber(final LottoNumber other) {
+        return this.number == other.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.number);
     }
 }
