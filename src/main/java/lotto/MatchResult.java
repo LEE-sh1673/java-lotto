@@ -1,10 +1,9 @@
 package lotto;
 
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Stream;
-
 import static java.util.stream.Collectors.toMap;
+
+import java.util.Map;
+import java.util.stream.Stream;
 
 public enum MatchResult {
     ALL(6, false, LottoRank.FIRST),
@@ -14,15 +13,15 @@ public enum MatchResult {
     THREE(3, false, LottoRank.FIFTH),
     NONE(0, false, LottoRank.NONE);
 
-    private static final Map<Integer, MatchResult> matchesToResult = Stream.of(values())
-        .filter((matchResult) -> !matchResult.isBonusMatches())
-        .collect(toMap(MatchResult::getNumberOfMatches, matchResult -> matchResult));
-
     private final int numberOfMatches;
 
     private final boolean bonusMatches;
 
     private final LottoRank rank;
+
+    private static final Map<Integer, MatchResult> matchesToResult = Stream.of(values())
+        .filter((matchResult) -> !matchResult.isBonusMatches())
+        .collect(toMap(MatchResult::getNumberOfMatches, matchResult -> matchResult));
 
     MatchResult(
         final int numberOfMatches,
@@ -47,11 +46,11 @@ public enum MatchResult {
         return matchResult;
     }
 
-    public int getNumberOfMatches() {
+    int getNumberOfMatches() {
         return numberOfMatches;
     }
 
-    public boolean isBonusMatches() {
+    boolean isBonusMatches() {
         return bonusMatches;
     }
 
