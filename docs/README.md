@@ -30,7 +30,7 @@
 **LotteryDrawer**
 - [ ] 로또 번호와 보너스 번호를 입력받아 당첨 번호를 발행할 수 있다.
 
-**WinningNumberMatcher**
+**WinningDetailsMatcher**
 - [ ] 당첨 번호와 로또 번호를 비교하여 몇 개가 일치하는지 구할 수 있다.
 
 **WinningDetailsSummarizer**
