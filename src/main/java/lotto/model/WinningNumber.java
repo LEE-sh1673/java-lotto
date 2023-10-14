@@ -20,7 +20,7 @@ public class WinningNumber {
     private void validate(final List<Integer> winningNumbers, final int bonusNumber) {
         if (isBonusContains(winningNumbers, bonusNumber)) {
             throw new IllegalArgumentException(
-                ErrorType.WINNING_NUMBER_DUPLICATED.getMessage()
+                ErrorType.WINNING_NUMBER_DUPLICATE.getMessage()
             );
         }
     }

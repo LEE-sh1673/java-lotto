@@ -1,4 +1,7 @@
-package lotto.util;
+package lotto.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.List;
 
@@ -6,16 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import lotto.model.Lotto;
-import lotto.model.PlayResult;
-import lotto.model.WinningNumber;
-import lotto.util.formatter.PlayResultFormatter;
+import lotto.model.result.PlayResult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+class LottoGameTest {
 
-class LottoDrawerTest {
-
-    private LottoDrawer lottoDrawer;
+    private LottoGame lottoGame;
 
     @BeforeEach
     void setUp() {
@@ -32,22 +30,20 @@ class LottoDrawerTest {
         final WinningNumber winningNumber = new WinningNumber(
             List.of(1, 2, 3, 4, 5, 6), 7
         );
-        lottoDrawer = new LottoDrawer(winningNumber, lottos);
+        lottoGame = new LottoGame(winningNumber, lottos);
     }
 
     @Test
     @DisplayName("로또 번호와 당첨 번호를 비교할 수 있다.")
     void drawLotto() {
-        final List<PlayResult> playResults = lottoDrawer.draw();
+        final List<PlayResult> playResults = lottoGame.play().getResults();
 
         assertEquals(5, playResults.size());
 
         PlayResult playResultOfMatchThree = playResults.get(0);
         assertEquals(1, playResultOfMatchThree.getCount());
         assertEquals(5000, playResultOfMatchThree.getWinningAmount());
-        assertEquals(false, playResultOfMatchThree.isBonusMatches());
+        assertFalse(playResultOfMatchThree.isBonusMatches());
         assertEquals(3, playResultOfMatchThree.getNumberOfMatches());
-
-        System.out.println(PlayResultFormatter.print(playResults));
     }
 }

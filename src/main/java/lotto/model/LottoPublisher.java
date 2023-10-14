@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.model;
 
 import java.util.Comparator;
 import java.util.List;
@@ -6,20 +6,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.Lotto;
-import lotto.model.LottoMoney;
-import lotto.model.LottoNumber;
 
 public class LottoPublisher {
 
-    public static List<Lotto> publish(final int amount) {
-        return IntStream.range(0, getNumberOfLotto(amount))
+    public static List<Lotto> publish(final LottoMoney money) {
+        return IntStream.range(0, getNumberOfLotto(money))
             .mapToObj((i) -> publishLotto())
             .collect(Collectors.toList());
     }
 
-    private static int getNumberOfLotto(final int amount) {
-        return LottoMoney.of(amount).getNumberOfLotto();
+    private static int getNumberOfLotto(final LottoMoney money) {
+        return money.getNumberOfLotto();
     }
 
     private static Lotto publishLotto() {
