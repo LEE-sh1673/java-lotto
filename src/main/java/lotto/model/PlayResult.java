@@ -1,19 +1,24 @@
-package lotto;
+package lotto.model;
 
-public class WinningDetailsDto {
+public class PlayResult {
 
     private final int numberOfMatches;
 
     private final int winningAmount;
 
-    private final int count;
+    private final boolean bonusMatches;
 
-    public WinningDetailsDto(
+    private final long count;
+
+    public PlayResult(
         final int numberOfMatches,
         final int winningAmount,
-        final int count) {
+        final boolean bonusMatches,
+        final long count
+    ) {
         this.numberOfMatches = numberOfMatches;
         this.winningAmount = winningAmount;
+        this.bonusMatches = bonusMatches;
         this.count = count;
     }
 
@@ -25,7 +30,11 @@ public class WinningDetailsDto {
         return winningAmount;
     }
 
-    public int getCount() {
+    public boolean isBonusMatches() {
+        return bonusMatches;
+    }
+
+    public long getCount() {
         return count;
     }
 }

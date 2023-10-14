@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.Objects;
 
@@ -52,5 +52,10 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(this.number);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
     }
 }

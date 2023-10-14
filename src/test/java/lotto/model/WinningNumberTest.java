@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -33,19 +33,19 @@ public class WinningNumberTest {
     @DisplayName("로또 번호를 비교하여 일치하는 개수를 구할 수 있다.")
     void countNumberOfMatchesWithLotto(
         final Lotto lotto,
-        final MatchResult expected
+        final WinningType expected
     ) {
-        assertEquals(expected, winningNumber.matches(lotto));
+        assertEquals(expected, winningNumber.compare(lotto));
     }
 
-    public static Stream<Arguments> provideLottoAndMatchResult() {
+    private static Stream<Arguments> provideLottoAndMatchResult() {
         return Stream.of(
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), MatchResult.ALL),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), MatchResult.FIVE_WITH_BONUS),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 8)), MatchResult.FIVE),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 9)), MatchResult.FOUR),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 8, 9, 10)), MatchResult.THREE),
-            Arguments.of(new Lotto(List.of(1, 2, 8, 9, 10, 11)), MatchResult.NONE)
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), WinningType.ALL),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), WinningType.FIVE_WITH_BONUS),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 8)), WinningType.FIVE),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 9)), WinningType.FOUR),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 8, 9, 10)), WinningType.THREE),
+            Arguments.of(new Lotto(List.of(1, 2, 8, 9, 10, 11)), WinningType.NONE)
         );
     }
 }

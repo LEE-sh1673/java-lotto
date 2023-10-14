@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -23,10 +23,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
-        validateDuplicated(numbers);
+        validateDuplicate(numbers);
     }
 
-    private void validateDuplicated(final List<Integer> numbers) {
+    private void validateDuplicate(final List<Integer> numbers) {
         HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (numbers.size() != uniqueNumbers.size()) {
@@ -40,13 +40,18 @@ public class Lotto {
         }
     }
 
-    public int difference(final Lotto other) {
+    public int countNumberOfContains(final Lotto other) {
         return (int)numbers.stream()
-            .filter(other::contains)
+            .filter(other::containsNumber)
             .count();
     }
 
-    public boolean contains(final LottoNumber lottoNumber) {
+    public boolean containsNumber(final LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
+    }
+
+    @Override
+    public String toString() {
+        return this.numbers.toString();
     }
 }

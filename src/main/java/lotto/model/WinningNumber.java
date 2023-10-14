@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lotto.exception.ErrorType;
 
@@ -17,24 +18,30 @@ public class WinningNumber {
     }
 
     private void validate(final List<Integer> winningNumbers, final int bonusNumber) {
-        if (isContainsBonus(winningNumbers, bonusNumber)) {
+        if (isBonusContains(winningNumbers, bonusNumber)) {
             throw new IllegalArgumentException(
                 ErrorType.WINNING_NUMBER_DUPLICATED.getMessage()
             );
         }
     }
 
-    private static boolean isContainsBonus(
+    private static boolean isBonusContains(
         final List<Integer> winningNumbers,
         int bonusNumber
     ) {
         return winningNumbers.contains(bonusNumber);
     }
 
-    public MatchResult matches(final Lotto lotto) {
-        return MatchResult.of(
-            winningLotto.difference(lotto),
-            lotto.contains(bonusNumber)
+    public List<WinningType> compareAll(List<Lotto> lottos) {
+        return lottos.stream()
+            .map(this::compare)
+            .collect(Collectors.toList());
+    }
+
+    WinningType compare(final Lotto lotto) {
+        return WinningType.of(
+            winningLotto.countNumberOfContains(lotto),
+            lotto.containsNumber(bonusNumber)
         );
     }
 }
