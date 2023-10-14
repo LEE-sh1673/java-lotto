@@ -17,7 +17,7 @@ class LottoGameTest {
 
     @BeforeEach
     void setUp() {
-        final List<Lotto> lottos = List.of(
+        final List<Lotto> lottoTickets = List.of(
             new Lotto(List.of(8, 21, 23, 41, 42, 43)),
             new Lotto(List.of(3, 5, 11, 16, 32, 38)),
             new Lotto(List.of(7, 11, 16, 35, 36, 44)),
@@ -30,7 +30,7 @@ class LottoGameTest {
         final WinningNumber winningNumber = new WinningNumber(
             List.of(1, 2, 3, 4, 5, 6), 7
         );
-        lottoGame = new LottoGame(winningNumber, lottos);
+        lottoGame = new LottoGame(winningNumber, lottoTickets);
     }
 
     @Test

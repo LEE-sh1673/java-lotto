@@ -32,8 +32,8 @@ public class WinningNumber {
         return winningNumbers.contains(bonusNumber);
     }
 
-    public List<WinningType> compareAll(List<Lotto> lottos) {
-        return lottos.stream()
+    public List<WinningType> compareAll(List<Lotto> lottoTickets) {
+        return lottoTickets.stream()
             .map(this::compare)
             .collect(Collectors.toList());
     }

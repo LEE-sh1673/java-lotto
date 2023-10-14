@@ -20,13 +20,15 @@ public class LottoGame {
         final WinningNumber winningNumber,
         final List<Lotto> lottoTickets
     ) {
-        this.countByType = mapToCountByType(winningNumber.compareAll(lottoTickets));
+        this.countByType = mapToCountByType(winningNumber, lottoTickets);
     }
 
     private EnumMap<WinningType, Long> mapToCountByType(
-        final List<WinningType> winningTypes
+        final WinningNumber winningNumber,
+        final List<Lotto> lottoTickets
     ) {
-        final EnumMap<WinningType, Long> countByType = winningTypes.stream()
+        final EnumMap<WinningType, Long> countByType
+            = winningNumber.compareAll(lottoTickets).stream()
             .collect(
                 groupingBy(
                     type -> type,
@@ -43,7 +45,7 @@ public class LottoGame {
 
     private List<PlayResult> mapToPlayResults() {
         return Arrays.stream(WinningType.values())
-            .filter(matchResult -> !matchResult.isNone())
+            .filter(winningType -> !winningType.isNone())
             .sorted(Collections.reverseOrder())
             .map(this::mapToResult)
             .collect(toList());

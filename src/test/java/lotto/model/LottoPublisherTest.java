@@ -27,7 +27,7 @@ public class LottoPublisherTest {
     @CsvSource({"1,1000", "2,2000", "10,10_000", "11,11000", "100,100000"})
     @DisplayName("금액을 입력받아 로또를 발행할 수 있다.")
     void publishLotto(final int numsLotto, final int money) {
-        final List<Lotto> lottos = LottoPublisher.publish(LottoMoney.of(money));
-        assertEquals(numsLotto, lottos.size());
+        final List<Lotto> lottoTickets = LottoPublisher.publish(LottoMoney.of(money));
+        assertEquals(numsLotto, lottoTickets.size());
     }
 }
