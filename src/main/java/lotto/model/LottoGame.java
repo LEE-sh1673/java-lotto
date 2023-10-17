@@ -15,7 +15,14 @@ public class LottoGame {
         final WinningNumber winningNumber,
         final List<Lotto> lottoTickets
     ) {
-        this.matchingTypes = winningNumber.compareAll(lottoTickets);
+        this.matchingTypes = mapMatchingTypes(winningNumber, lottoTickets);
+    }
+
+    private static List<MatchingType> mapMatchingTypes(
+        final WinningNumber winningNumber,
+        final List<Lotto> lottoTickets
+    ) {
+        return winningNumber.compareAll(lottoTickets);
     }
 
     public MatchingResult play() {
