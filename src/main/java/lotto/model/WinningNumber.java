@@ -32,14 +32,14 @@ public class WinningNumber {
         return winningNumbers.contains(bonusNumber);
     }
 
-    public List<WinningType> compareAll(List<Lotto> lottoTickets) {
+    public List<MatchingType> compareAll(List<Lotto> lottoTickets) {
         return lottoTickets.stream()
             .map(this::compare)
             .collect(Collectors.toList());
     }
 
-    WinningType compare(final Lotto lotto) {
-        return WinningType.of(
+    MatchingType compare(final Lotto lotto) {
+        return MatchingType.of(
             winningLotto.countNumberOfContains(lotto),
             lotto.containsNumber(bonusNumber)
         );

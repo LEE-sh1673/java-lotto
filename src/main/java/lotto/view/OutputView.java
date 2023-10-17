@@ -24,7 +24,6 @@ public class OutputView {
     public static void printLottoTickets(final List<Lotto> lottoTickets) {
         System.out.println();
         printFormatMessage(Format.LOTTO_TICKET_SIZE, lottoTickets.size());
-        System.out.println();
         lottoTickets.forEach(System.out::println);
     }
 

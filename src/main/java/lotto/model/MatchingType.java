@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.toMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public enum WinningType {
+public enum MatchingType {
     ALL(6, false, WinningAmount.FIRST),
     FIVE_WITH_BONUS(5, true, WinningAmount.SECOND),
     FIVE(5, false, WinningAmount.THIRD),
@@ -19,11 +19,11 @@ public enum WinningType {
 
     private final WinningAmount amount;
 
-    private static final Map<Integer, WinningType> matchesToResult = Stream.of(values())
+    private static final Map<Integer, MatchingType> matchesToResult = Stream.of(values())
         .filter((matchResult) -> !matchResult.isBonusMatches())
-        .collect(toMap(WinningType::getNumberOfMatches, matchResult -> matchResult));
+        .collect(toMap(MatchingType::getNumberOfMatches, matchResult -> matchResult));
 
-    WinningType(
+    MatchingType(
         final int numberOfMatches,
         final boolean bonusMatches,
         final WinningAmount amount
@@ -33,17 +33,17 @@ public enum WinningType {
         this.amount = amount;
     }
 
-    public static WinningType of(
+    public static MatchingType of(
         final int numberOfMatches,
         final boolean bonusMatches
     ) {
-        final WinningType winningType
-            = matchesToResult.getOrDefault(numberOfMatches, WinningType.NONE);
+        final MatchingType matchingType
+            = matchesToResult.getOrDefault(numberOfMatches, MatchingType.NONE);
 
-        if (bonusMatches && winningType == WinningType.FIVE) {
-            return WinningType.FIVE_WITH_BONUS;
+        if (bonusMatches && matchingType == MatchingType.FIVE) {
+            return MatchingType.FIVE_WITH_BONUS;
         }
-        return winningType;
+        return matchingType;
     }
 
     public int getNumberOfMatches() {

@@ -33,19 +33,19 @@ public class WinningNumberTest {
     @DisplayName("로또 번호를 비교하여 일치하는 개수를 구할 수 있다.")
     void countNumberOfMatchesWithLotto(
         final Lotto lotto,
-        final WinningType expected
+        final MatchingType expected
     ) {
         assertEquals(expected, winningNumber.compare(lotto));
     }
 
     private static Stream<Arguments> provideLottoAndMatchResult() {
         return Stream.of(
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), WinningType.ALL),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), WinningType.FIVE_WITH_BONUS),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 8)), WinningType.FIVE),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 9)), WinningType.FOUR),
-            Arguments.of(new Lotto(List.of(1, 2, 3, 8, 9, 10)), WinningType.THREE),
-            Arguments.of(new Lotto(List.of(1, 2, 8, 9, 10, 11)), WinningType.NONE)
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), MatchingType.ALL),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), MatchingType.FIVE_WITH_BONUS),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 8)), MatchingType.FIVE),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 9)), MatchingType.FOUR),
+            Arguments.of(new Lotto(List.of(1, 2, 3, 8, 9, 10)), MatchingType.THREE),
+            Arguments.of(new Lotto(List.of(1, 2, 8, 9, 10, 11)), MatchingType.NONE)
         );
     }
 }

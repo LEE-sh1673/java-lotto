@@ -5,25 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.LottoMoney;
-import lotto.model.WinningNumber;
 import lotto.validator.NumbericValidator;
 
 public class InputView {
 
-    public static LottoMoney createLottoMoney() {
-        return LottoMoney.of(readLottoMoney());
-    }
-
-    private static int readLottoMoney() {
+    public static int readLottoMoney() {
         return readNumber(Message.INPUT_LOTTO_MONEY);
     }
 
-    public static WinningNumber createWinningNumber() {
-        return new WinningNumber(readNumbers(), readBonusNumber());
-    }
-
-    private static List<Integer> readNumbers() {
+    public static List<Integer> readNumbers() {
         final String input = readLine(Message.INPUT_WINNING_NUMBER);
         NumbericValidator.validateNumbers(input);
         return Arrays.stream(input.split(","))
@@ -31,7 +21,7 @@ public class InputView {
             .collect(Collectors.toList());
     }
 
-    private static int readBonusNumber() {
+    public static int readBonusNumber() {
         return readNumber(Message.INPUT_BONUS_NUMBER);
     }
 

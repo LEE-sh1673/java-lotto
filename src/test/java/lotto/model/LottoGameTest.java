@@ -36,8 +36,9 @@ class LottoGameTest {
     @Test
     @DisplayName("로또 번호와 당첨 번호를 비교할 수 있다.")
     void drawLotto() {
+        final MatchingResult matchingResult = lottoGame.play();
         final List<PlayResult> playResults
-            = lottoGame.play(LottoMoney.of(8000)).getResults();
+            = matchingResult.map(LottoMoney.of(8000)).getResults();
 
         assertEquals(5, playResults.size());
 
