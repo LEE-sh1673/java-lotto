@@ -20,10 +20,10 @@ public class LottoGame {
         final WinningNumber winningNumber,
         final List<Lotto> lottoTickets
     ) {
-        this.countByType = mapToCountByType(winningNumber, lottoTickets);
+        this.countByType = mapCountByType(winningNumber, lottoTickets);
     }
 
-    private EnumMap<WinningType, Long> mapToCountByType(
+    private EnumMap<WinningType, Long> mapCountByType(
         final WinningNumber winningNumber,
         final List<Lotto> lottoTickets
     ) {
@@ -39,19 +39,19 @@ public class LottoGame {
         return countByType;
     }
 
-    public WinningStatistics play() {
-        return new WinningStatistics(mapToPlayResults());
+    public WinningStatistics play(final LottoMoney lottoMoney) {
+        return new WinningStatistics(mapPlayResults(), lottoMoney);
     }
 
-    private List<PlayResult> mapToPlayResults() {
+    private List<PlayResult> mapPlayResults() {
         return Arrays.stream(WinningType.values())
             .filter(winningType -> !winningType.isNone())
             .sorted(Collections.reverseOrder())
-            .map(this::mapToResult)
+            .map(this::mapResult)
             .collect(toList());
     }
 
-    private PlayResult mapToResult(final WinningType winningType) {
+    private PlayResult mapResult(final WinningType winningType) {
         return new PlayResult(
             winningType.getNumberOfMatches(),
             winningType.getWinningAmount(),

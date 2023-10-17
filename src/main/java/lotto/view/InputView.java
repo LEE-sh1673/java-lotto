@@ -16,8 +16,7 @@ public class InputView {
     }
 
     private static int readLottoMoney() {
-        System.out.println(Message.INPUT_LOTTO_MONEY.message);
-        return readNumber();
+        return readNumber(Message.INPUT_LOTTO_MONEY);
     }
 
     public static WinningNumber createWinningNumber() {
@@ -25,8 +24,7 @@ public class InputView {
     }
 
     private static List<Integer> readNumbers() {
-        System.out.println(Message.INPUT_WINNING_NUMBER.message);
-        final String input = Console.readLine();
+        final String input = readLine(Message.INPUT_WINNING_NUMBER);
         NumbericValidator.validateNumbers(input);
         return Arrays.stream(input.split(","))
             .map(Integer::parseInt)
@@ -34,17 +32,18 @@ public class InputView {
     }
 
     private static int readBonusNumber() {
-        System.out.println(Message.INPUT_BONUS_NUMBER.message);
-        return readNumber();
+        return readNumber(Message.INPUT_BONUS_NUMBER);
     }
 
-    private static int readNumber() {
-        final String input = readLine();
+    private static int readNumber(final Message message) {
+        final String input = readLine(message);
         NumbericValidator.validateNumber(input);
         return Integer.parseInt(input);
     }
 
-    private static String readLine() {
+    private static String readLine(final Message message) {
+        System.out.println();
+        System.out.println(message.message);
         return Console.readLine();
     }
 
